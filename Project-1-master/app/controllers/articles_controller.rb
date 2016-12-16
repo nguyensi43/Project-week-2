@@ -43,7 +43,9 @@ http_basic_authenticate_with name: "nguyensi", password: "1", except: [:index, :
  
     redirect_to articles_path
   end
- 
+  def find_post
+   @article = Article.find(params[:id])
+  end
   private
     def article_params
       params.require(:article).permit(:title, :text)
