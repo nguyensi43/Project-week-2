@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blog</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  
+
+  <body id="store">
+    <div id="banner">
+        <%= image_tag("logo.png") %>
+        <%= @page_title || "APP STORE" %>
+    </div>
+    
+        <div id="main">
+            <%= yield %>
+        </div>
+
+</body>
+</html>
