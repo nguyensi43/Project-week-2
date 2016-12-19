@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
 before_action :find_post, only: [:edit, :update, :show, :delete]
-http_basic_authenticate_with name: "nguyensi", password: "1", except: [:index, :show]
+before_action :authenticate_user!
   def index
     @articles = Article.all
   end
