@@ -1,0 +1,29 @@
+h1[style="font-site:20 pt ; font-family:'Bookman Old Style'; text-align: center;color:#2E8B57"]
+  | Listing articles
+table[align="center"]
+  tr
+    th#title
+      | Title
+    th#title
+      | Text
+    th[colspan="3"]
+  - @articles.each do |article|
+    div
+
+    tr#listing
+
+    div
+
+    td
+      = article.title
+    td
+      = article.text.truncate(358).html_safe()
+    td
+      = link_to 'Show', article_path(article)
+    td
+      = link_to 'Edit', edit_article_path(article)
+    td
+      = link_to 'Destroy', article_path(article),
+      -               method: :delete,
+      -               data: { confirm: 'Are you sure?' }
+= link_to 'New article', new_article_path
