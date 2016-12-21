@@ -1,36 +1,18 @@
-<table cellspacing="15">
-  <tr>
-  <th><%= link_to 'New article', new_article_path %></th>
-  <th><%= link_to 'Log-Out', destroy_user_session_path, :method => :delete %></th>
-  <th><%= link_to 'Sign-In', user_session_path, :method => :post %></th>
-</table>
-<h1 style="font-site:20 pt ; font-family:'Bookman Old Style'; text-align: center;color:#2E8B57">Listing articles</h1>
- 
-<table align="center" border="1">
-  <tr>
-    <th id="title">Title</th>
-    <th id="title">Text</th>
-    <th id="title">Information</th>
-    <th id="title", colspan="3">Option</th>
-  </tr>
-
+<h1 style='text-align: center'>Listing articles</h1>
   <% @articles.each do |article| %>
- <div>
-    <tr id="listing">
-     <div>
-      <td><%= article.title %></td>
-      <td><%= article.text.truncate(358).html_safe() %></td>
-      <td><%= article.created_at.strftime('%b %d, %Y') %></br><%= article.user.email %></td>
-      <td><%= link_to 'Show', article_path(article) %></td>
+ <div class="well">
+      <h3><%= article.title %></h3>
+      <p><%= article.text.truncate(358).html_safe() %></p>
+      <p><%= article.created_at.strftime('%b %d, %Y') %></p>
+      <p><%= article.user.email %></p>
+      <%= link_to 'Show', article_path(article), :class => "btn btn-default" %>
       <% if article.user == current_user %>
-      <td><%= link_to 'Edit', edit_article_path(article) %></td>
-      <td><%= link_to 'Destroy', article_path(article),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %></td>
+        <%= link_to 'Edit', edit_article_path(article), :class => "btn btn-default" %>
+        <%= link_to 'Destroy', article_path(article),:class => "btn btn-danger",
+          method: :delete,
+          data: { confirm: 'Are you sure?' } %>
       <%end%>
-     </div>
-    </tr>
-</div>
+  </div> 
+
   <% end %>
-</table>
 
