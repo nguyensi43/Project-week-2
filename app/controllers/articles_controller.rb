@@ -1,10 +1,8 @@
 class ArticlesController < ApplicationController
 before_action :find_post, only: [:edit, :update, :show, :delete]
-before_action :authenticate_user!
+before_action :authenticate_user!, except: [:index, :show]
   def index
     @articles = Article.all
-    @u=User.all
-    @c=current_user.email
   end
  
   def show
