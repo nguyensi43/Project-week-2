@@ -1,14 +1,17 @@
-p
-  strong
-    | Title:
-  = @article.title
-p
-  strong
-    | Text:
-  =@article.text.html_safe()
+.well
+  p
+    strong
+      | Title:
+    = @article.title
+  p
+    strong
+      | Text:
+    =@article.text.html_safe()
+
 h2
-  | Comments: 
-  =@article.comments.count
+  | Comments ( 
+  =@article.comments.count 
+  |)
 = render @article.comments
 = Time.now.strftime("%m/%d/%Y")
 h2
