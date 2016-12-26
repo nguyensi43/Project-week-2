@@ -1,20 +1,19 @@
-h1 [style="text-align: center;"] 
-    | Listing articles
-- @articles.each do |article| 
+body
+  -@articles.each do |article| 
     .well
       h3
-        = article.title
+        =article.title
       p
-        = article.text.truncate(358).html_safe() 
+        =article.text.truncate(358).html_safe() 
       p
-        = article.created_at.strftime('%b %d, %Y')
+        =article.created_at.strftime('%b %d, %Y')
       p
-        = article.user.email 
-      <br/>
-      = link_to 'Show', article_path(article), :class => "btn btn-default"
+        =article.user.email 
+      br
+      =link_to 'Show', article_path(article), :class => "btn btn-default"
       -if article.user == current_user 
-        = link_to 'Edit', edit_article_path(article), :class => "btn btn-default" 
-        = link_to 'Destroy', article_path(article),:class => "btn btn-danger",
+        =link_to 'Edit', edit_article_path(article), :class => "btn btn-default" 
+        =link_to 'Destroy', article_path(article),:class => "btn btn-danger",
           method: :delete,
           data: { confirm: 'Are you sure?' } 
       

@@ -19,7 +19,6 @@ before_action :authenticate_user!, except: [:index, :show]
  
   def create
     @article = current_user.articles.new(article_params)
- 
     if @article.save
       redirect_to @article
     else
@@ -29,7 +28,6 @@ before_action :authenticate_user!, except: [:index, :show]
  
   def update
     @article = Article.find(params[:id])
- 
     if @article.update(article_params)
       redirect_to @article
     else
@@ -40,7 +38,6 @@ before_action :authenticate_user!, except: [:index, :show]
   def destroy
     @article = Article.find(params[:id])
     @article.destroy
- 
     redirect_to articles_path
   end
   def find_post
@@ -49,11 +46,5 @@ before_action :authenticate_user!, except: [:index, :show]
   private
     def article_params
       params.require(:article).permit(:title, :text)
-    end
-
-
-
-
- 
-  
+    end  
 end
