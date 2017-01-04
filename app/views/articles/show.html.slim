@@ -1,4 +1,8 @@
 .well
+  h3 
+    Category
+    |
+    =@article.category.name
   p
     strong
       | Title:
@@ -7,12 +11,10 @@
     strong
       | Text:
     =@article.text.html_safe()
-h2
-  | Comments ( 
-  =@article.comments.count 
-  |)
+h1
+  =link_to "Comments", "#",  :onclick => "#comments-section.toggle()"
+  =@article.comments.count     
 =render @article.comments
-=Time.now.strftime("%m/%d/%Y")
 h2
   | Add a comment:
 =render 'comments/form'

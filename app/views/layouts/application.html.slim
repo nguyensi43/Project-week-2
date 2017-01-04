@@ -3,7 +3,7 @@ html
   head
     title
       |
-        Blog
+        = maketitle(yield(:title))
     script [src="https://code.jquery.com/jquery-3.1.1.min.js"]
     script [src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"]
     =csrf_meta_tags 
@@ -31,18 +31,25 @@ html
         #navbar.collapse.navbar-collapse
           ul.nav.navbar-nav
             li
-              =link_to 'Home', articles_path 
+              =link_to 'Home', articles_path
           ul.nav.navbar-nav
             li
               =link_to 'New article', new_article_path
-          
+          ul.nav.navbar-nav
+            li
+              =link_to 'Sign-In', user_session_path, :method => :post
           ul.nav.navbar-nav
             li
               =link_to 'Log-Out', destroy_user_session_path, :method => :delete
-        
-          ul.nav.navbar-nav
-            li
-              =link_to 'Sign-In', user_session_path, :method => :post 
+          ul.nav.navbar-nav.navbar-right
+            li.dropdown
+              a.dropdown-toggle[href="#" data-toggle="dropdown" role="button" aria- expanded="false"] 
+                |  Categories 
+                span.caret
+              ul.dropdown-menu[role="menu"]
+                -Category.all.each do |category| 
+                  li class=("#{'active' if params[:category] == category.name}") 
+                    =link_to category.name, articles_path(category: category.name), class: "link"     
     .container
       =yield 
     
