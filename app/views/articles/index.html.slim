@@ -5,9 +5,9 @@ h1.current-category= params[:category]
 -else 
   body
     -@articles.each do |article| 
-      .well
+      .well.well-lg
         h3
-          =article.title
+          span.label.label-primary=article.title
         p
           =article.text.truncate(358).html_safe() 
         p
